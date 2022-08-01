@@ -1,6 +1,7 @@
 pacman -Syy &&
-pacman -Sy figlet &&
-mkfs.fat -F 32 /dev/sda1 && mkswap /dev/sda2 &&
+pacman -Sy archlinux-keyring figlet &&
+mkfs.fat -F 32 /dev/sda1 &&
+mkswap /dev/sda2 &&
 mkfs.ext4 /dev/sda3 && 
 mount /dev/sda3 /mnt &&
 swapon /dev/sda2 &&
@@ -22,4 +23,5 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg &&
 arch-chroot /mnt sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers &&
 arch-chroot /mnt systemctl enable NetworkManager &&
 umount -a &&
+clear &&
 figlet INSTALLATION COMPLETE
